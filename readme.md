@@ -45,7 +45,7 @@ Ensure the following services are up and running:
    - 🌐 **Redis Insight:** Open your browser and go to http://localhost:8001
    - 🌐 **Your Go App:** Access your rate limiter API at http://localhost:8080/ping
 
-### 5. Configuing rate limiting base on IP or API_KEY 
+### 5. Configuring rate limiting based on IP or API_KEY 
 #### 5.1 IP
 
 ````
