@@ -14,8 +14,7 @@ Before you start, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/joseMarciano/rate-limiter-golang.git
 ``` 
 
 ### 2. Build and Run the Services
