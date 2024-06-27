@@ -16,5 +16,4 @@ type Client struct {
 	Type     TypeClient
 	LastHit  time.Time
 	IsLocked bool
-	LockedAt time.Time
 }

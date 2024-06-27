@@ -8,6 +8,7 @@ import (
 	"rate-limiter/infra/repository/client"
 	redisRepository "rate-limiter/infra/repository/client/redis"
 	"rate-limiter/internal/model"
+	"strings"
 	"time"
 )
 
@@ -42,7 +43,7 @@ func main() {
 func limiter(service *application.RateLimiterService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		apiKey := c.Request.Header.Get("API_KEY")
-		value := c.Request.RemoteAddr
+		value := strings.Split(c.Request.RemoteAddr, ":")[0]
 		typeClient := model.Ip
 
 		if apiKey != "" {

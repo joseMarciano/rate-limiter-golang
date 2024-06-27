@@ -1,8 +1,11 @@
 package in_memory
 
 import (
+	"context"
+	"encoding/json"
 	redis "github.com/redis/go-redis/v9"
 	"rate-limiter/internal/model"
+	"time"
 )
 
 type RedisRepository struct {
@@ -14,9 +17,17 @@ func NewRedisRepository(redisClient *redis.Client) *RedisRepository {
 	return &RedisRepository{redisClient: redisClient}
 }
 
-func (r *RedisRepository) Upsert(client *model.Client) (*model.Client, error) {
-	return nil, nil
-}
 func (r *RedisRepository) Create(client *model.Client) (*model.Client, error) {
-	return nil, nil
+	payload, err := json.Marshal(client)
+	if err != nil {
+		return nil, err
+	}
+
+	result := r.redisClient.Set(context.TODO(), client.Id, payload, time.Minute*10)
+
+	if result.Err() != nil {
+		return nil, result.Err()
+	}
+
+	return client, nil
 }

@@ -1,7 +1,6 @@
 package application
 
 import (
-	"fmt"
 	"math"
 	"rate-limiter/env"
 	"rate-limiter/infra/repository/client"
@@ -39,7 +38,7 @@ func (s *RateLimiterService) Allow(id string, typeClient model.TypeClient) bool 
 	}
 
 	if clientLimiter.Client.IsLocked {
-		fmt.Printf("Client %s is locked\r\n", clientLimiter.Client.Id)
+		//fmt.Printf("Client %s is locked\r\n", clientLimiter.Client.Id)
 		return false
 	}
 
@@ -59,7 +58,7 @@ func (s *RateLimiterService) triggerUnlockClient() {
 		for {
 			time.Sleep(time.Second * 3)
 			s.mtx.Lock()
-			fmt.Printf("Executing unlock at %s\r\n", time.Now())
+			//fmt.Printf("Executing unlock at %s\r\n", time.Now())
 			for _, c := range s.defaultRepository.FindAll() {
 
 				if !c.Client.IsLocked {
@@ -78,6 +77,5 @@ func (s *RateLimiterService) triggerUnlockClient() {
 
 			s.mtx.Unlock()
 		}
-
 	}()
 }
