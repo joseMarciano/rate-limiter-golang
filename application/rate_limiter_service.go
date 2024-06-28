@@ -56,7 +56,7 @@ func (s *RateLimiterService) Allow(id string, typeClient model.TypeClient) bool 
 func (s *RateLimiterService) triggerUnlockClient() {
 	go func() {
 		for {
-			time.Sleep(time.Second * 3)
+			time.Sleep(time.Second)
 			s.mtx.Lock()
 			//fmt.Printf("Executing unlock at %s\r\n", time.Now())
 			for _, c := range s.defaultRepository.FindAll() {

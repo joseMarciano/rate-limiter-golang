@@ -28,7 +28,7 @@ func NewDefaultRepository(redisRepository internal.IClientRepository) *DefaultRe
 func (r *DefaultRepository) Create(client *model.Client) *model.ClientLimiter {
 	clientLimiter := &model.ClientLimiter{
 		Client: client,
-		Limit:  rate.NewLimiter(rate.Limit(env.GetConfigLimitRate(client.Type)), 10),
+		Limit:  rate.NewLimiter(rate.Limit(env.GetConfigLimitRate(client.Type)), 1),
 	}
 	r.data[client.Id] = clientLimiter
 

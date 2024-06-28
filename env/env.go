@@ -1,7 +1,6 @@
 package env
 
 import (
-	"math"
 	"os"
 	"rate-limiter/internal/model"
 	"strconv"
@@ -39,7 +38,7 @@ func getIpConfigLimitRate() int {
 
 	number, err := strconv.Atoi(os.Getenv(ipConfigLimitRate))
 	if err != nil {
-		return math.MaxInt
+		return 1
 	}
 
 	configMap[ipConfigLimitRate] = number
@@ -54,7 +53,7 @@ func getIpLockedTime() int {
 
 	number, err := strconv.Atoi(os.Getenv(ipLockedTime))
 	if err != nil {
-		return math.MinInt
+		return 1
 	}
 
 	configMap[ipLockedTime] = number
@@ -69,7 +68,7 @@ func getApiKeyConfigLimitRate() int {
 
 	number, err := strconv.Atoi(os.Getenv(apiKeyConfigLimitRate))
 	if err != nil {
-		return math.MaxInt
+		return 1
 	}
 
 	configMap[apiKeyConfigLimitRate] = number
@@ -84,7 +83,7 @@ func getApiKeyLockedTime() int {
 
 	number, err := strconv.Atoi(os.Getenv(apiKeyLockedTime))
 	if err != nil {
-		return math.MinInt
+		return 1
 	}
 
 	configMap[apiKeyLockedTime] = number
