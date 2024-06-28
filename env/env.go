@@ -1,7 +1,6 @@
 package env
 
 import (
-	"fmt"
 	"math"
 	"os"
 	"rate-limiter/internal/model"
@@ -44,7 +43,6 @@ func getIpConfigLimitRate() int {
 	}
 
 	configMap[ipConfigLimitRate] = number
-	fmt.Printf("getting number %s", number)
 	return number
 }
 
